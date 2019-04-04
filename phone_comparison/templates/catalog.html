@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Каталог{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="header">
+            <h1>Сравнение телефонов</h1>
+        </div>
+        <table>
+        {% for key, values in phones.items %}
+            {% if forloop.last %}
+                <tr>
+                    <td style="vertical-align: top">
+                        {{key}}
+                    </td>
+                    {% for val_list in values %}
+                        <td style="vertical-align: top">
+
+                            {{ val_list.0 }}
+                            <br>
+                            {{ val_list.1 }}
+                            <br>
+                            {{ val_list.2 }}
+                        </td>
+
+                    {% endfor %}
+                </tr>
+            {% elif forloop.first %}
+                <th>{{key}}</th>
+                {% for val in values %}
+                    <th>{{val}}</th>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td>
+                        {{key}}
+                    </td>
+                    {% for val in values %}
+                    {% if val == False %}
+                    <td> - </td>
+                    {% elif val == True%}
+                    <td> Есть </td>
+                    {% else %}
+                    <td>{{val}}</td>
+                    {% endif %}
+
+                {% endfor %}
+                </tr>
+            {% endif %}
+
+
+        {% endfor %}
+        </table>
+
+    </div>
+
+{% endblock %}
