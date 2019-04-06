@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Каталог{% endblock %}
+{% block content %}
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active aria-current="page"">Каталог</li>
+      </ol>
+    </nav>
+    <div class="container">
+        <div class="header">
+            <h1><a href="/catalog">Каталог</a></h1>
+        </div>
+
+        <div class="sort-block">
+            <!--<ol class="breadcrumb">-->
+                <!--<li class="breadcrumb-item">Cортировать по:</li>-->
+                <!--<li class="breadcrumb-item"><a href="{% url 'show_catalog'%}">Названию</a></li>-->
+                <!--<li class="breadcrumb-item active" aria-current="page">Начиная с дешевых</li>-->
+                <!--<li class="breadcrumb-item active" aria-current="page">Начиная с дорогих</li>-->
+            <!--</ol>-->
+            <div class="nav" style="margin-bottom: 50px">
+                <a class="nav-link disabled" href="#">Сортировать по</a>
+                <a class="nav-link {{name}}" href="?sort=name">Названию</a>
+                <a class="nav-link {{min_price}}" href="?sort=min_price">Начиная с дешевы</a>
+                <a class="nav-link {{max_price}}" href="?sort=max_price">Начиная с дорогих</a>
+            </div>
+
+        </div>
+
+        <div class="content">
+            <div class="row">
+            {% for phone in phone_list%}
+                    <div  class="col-md-6">
+                        <a href="{% url 'show_product' slug=phone.slug %}">{{phone.name}}</a>
+                        <p> Стоимость {{phone.price}} р. </p>
+                        <img src="{{phone.image}}" style="height: 300px">
+                    </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

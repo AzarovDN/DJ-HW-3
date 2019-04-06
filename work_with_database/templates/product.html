@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Телефон{% endblock %}
+{% block content %}
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'show_catalog'%}">Каталог</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{phone.name}}</li>
+  </ol>
+</nav>
+
+
+    <div class="container">
+        <div class="header">
+            <h1>Телефон</h1>
+        </div>
+        <div class="content">
+            <h2> {{phone.name}} </h2>
+            <p> Стоимость {{phone.price}} </p>
+            <img src="{{phone.image}}" style="height: 500px">
+            <p> Дата релиза {{phone.release_date}}</p>
+            <p>
+                {% if phone.lte_exists %}
+                    LTE
+                {% else %}
+                    3G
+                {% endif %}
+
+            </p>
+
+
+        </div>
+    </div>
+{% endblock %}
