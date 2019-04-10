@@ -58,16 +58,11 @@ def show_catalog(request):
     for phone in list(PechenkaPhone.objects.all()):
         phone_to_dict(phone)
 
-
-
-
-    # print (comparison_dict)
     context = {'phones': comparison_dict,
-              'len': len(phone_list),
+               'len': len(phone_list),
                'phone': phone_list
               }
 
-    # print(context['phones'])
     return render(
         request,
         'catalog.html', context

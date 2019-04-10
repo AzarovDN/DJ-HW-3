@@ -1,8 +1,5 @@
 from django.shortcuts import render
 from phones.models import Phone
-# from operator import itemgetter
-
-# sortedlist = sorted(alist, key=lambda x: (x.firstname , x.lastname))
 
 def show_start(request):
     return render(
